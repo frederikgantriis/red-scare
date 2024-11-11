@@ -8,16 +8,18 @@ from math import inf
 
 def bfs(graph, s, t):
     visited = set()
-    queue = [s]
+    queue = [[s]]
     while queue:
-        node = queue.pop(0)
-        if node == t:
-            return True # found path from s to t
-        if node in visited:
-            continue
-        visited.add(node)
-        queue.extend(graph[node])
-    return False # no path from s to t
+        path = queue.pop(0)
+        v = path[-1]
+        visited.add(v)
+        for node in graph[v]:
+            if node == t:
+                return path # found path from s to t
+            if node not in visited:
+                visited.add(node)
+                queue.append(path + [node])
+    return [] # no path from s to t
 
 
 def dijkstra(graph, weight, s, t):

@@ -27,4 +27,4 @@ for _ in range(m):
         graph[u].append(v)
 
 # Result
-print(bfs(graph, s, t))
+print(len(bfs(graph, s, t)) > 0)
