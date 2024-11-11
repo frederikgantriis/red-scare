@@ -13,9 +13,11 @@ for _ in range(n):
     if len(v) > 1: 
         reds.add(v[0])
 
+reds -= {s, t}
+
 for _ in range(m):
     u, e, v = input().split()
-    if (u in reds or v in reds) and (u != s or u != t or v != s or v != t):
+    if u in reds or v in reds:
         continue
     
     if e == "--": # undirected
