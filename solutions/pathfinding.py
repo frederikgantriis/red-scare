@@ -15,7 +15,7 @@ def bfs(graph, s, t):
         visited.add(v)
         for node in graph[v]:
             if node == t:
-                return path # found path from s to t
+                return path + [node] # found path from s to t
             if node not in visited:
                 visited.add(node)
                 queue.append(path + [node])
