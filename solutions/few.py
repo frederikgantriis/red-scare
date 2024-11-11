@@ -1,26 +1,6 @@
 from collections import defaultdict
-from queue import PriorityQueue
-from math import inf
 
-
-def dijkstra(graph, weight, s, t):
-    pq = PriorityQueue()
-    pq.put((weight[s], s))
-    dist_to = defaultdict(lambda: inf)
-    edge_to = defaultdict(lambda: None)
-    while not pq.empty():
-        dist_to_node, node = pq.get()
-        if node == t:
-            return dist_to_node
-        if dist_to_node > dist_to[node]:
-            continue
-        for neighbor in graph[node]:
-            dist = dist_to_node + weight[neighbor]
-            if dist < dist_to[neighbor]:
-                dist_to[neighbor] = dist
-                edge_to[neighbor] = node
-                pq.put((dist, neighbor))
-    return -1
+from pathfinding import dijkstra
 
 
 def main():

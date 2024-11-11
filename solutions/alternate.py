@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+from pathfinding import bfs
+
 n, m, r = map(int, input().split())
 s, t = input().split()
 
@@ -24,20 +26,5 @@ for _ in range(m):
     else: # directed
         graph[u].append(v)
 
-
-# BFS
-def bfs(s, t):
-    visited = set()
-    queue = [s]
-    while queue:
-        node = queue.pop(0)
-        if node == t:
-            return True # found path from s to t
-        if node in visited:
-            continue
-        visited.add(node)
-        queue.extend(graph[node])
-    return False # no path from s to t
-
 # Result
-print(bfs(s, t))
+print(bfs(graph, s, t))
