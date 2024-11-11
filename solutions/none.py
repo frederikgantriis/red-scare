@@ -13,11 +13,11 @@ for _ in range(n):
     if len(v) > 1: 
         reds.add(v[0])
 
+reds -= {s, t}
+
 for _ in range(m):
     u, e, v = input().split()
-    if u in reds and v in reds:
-        continue
-    if u not in reds and v not in reds:
+    if u in reds or v in reds:
         continue
     
     if e == "--": # undirected
@@ -26,5 +26,4 @@ for _ in range(m):
     else: # directed
         graph[u].append(v)
 
-# Result
-print(len(bfs(graph, s, t)) > 0)
+print(len(bfs(graph, s, t)) - 1)
