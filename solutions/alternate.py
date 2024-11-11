@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 n, m, r = map(int, input().split())
 s, t = input().split()
@@ -28,9 +28,9 @@ for _ in range(m):
 # BFS
 def bfs(s, t):
     visited = set()
-    queue = [s]
+    queue = deque([s])
     while queue:
-        node = queue.pop(0)
+        node = queue.popleft()
         if node == t:
             return True # found path from s to t
         if node in visited:
