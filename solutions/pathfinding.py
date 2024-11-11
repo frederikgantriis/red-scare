@@ -2,15 +2,15 @@
 Path finding utilities
 """
 
-from collections import defaultdict
+from collections import defaultdict, deque
 from queue import PriorityQueue
 from math import inf
 
 def bfs(graph, s, t):
     visited = set()
-    queue = [[s]]
+    queue = deque([[s]])
     while queue:
-        path = queue.pop(0)
+        path = queue.popleft()
         v = path[-1]
         visited.add(v)
         for node in graph[v]:
