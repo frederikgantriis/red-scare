@@ -4,18 +4,16 @@ from pathfinding import dijkstra
 
 
 def main():
-    n, m, r = map(int, input().split())
+    n, m, _ = map(int, input().split())
     s, t = input().split()
 
     vertices = []
-    reds = defaultdict(lambda: False)
     weight = defaultdict(lambda: 0)
 
     for _ in range(n):
         v = input()
         if v.endswith("*"):
             v = v.split()[0]
-            reds[v] = True
             weight[v] = 1
         vertices.append(v)
 
