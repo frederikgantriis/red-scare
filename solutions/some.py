@@ -1,5 +1,14 @@
 from collections import defaultdict
+from enum import Enum
+
 from flow import flow
+from many import topological_order, longest_path
+
+
+class Color(Enum):
+    WHITE = 0
+    GREY = 1
+    BLACK = 2
 
 
 def main():
@@ -9,7 +18,7 @@ def main():
     vertices = []
     reds = defaultdict(lambda: False)
     flow_graph = defaultdict(lambda: defaultdict(int))
-    
+
     for _ in range(n):
         v = input()
         if v.endswith("*"):
@@ -21,6 +30,7 @@ def main():
         flow_graph[v + "_i"][v + "_o"] = 1
 
     many_graph = defaultdict(list)
+    reverse_many_graph = defaultdict(list)
     is_directed = True
 
     # Read graph edges
@@ -29,6 +39,7 @@ def main():
 
         flow_graph[u + "_o"][v + "_i"] = 1
         many_graph[u].append(v)
+        reverse_many_graph[v].append(u)
 
         if line == "--":
             flow_graph[v + "_o"][u + "_i"] = 1
@@ -36,8 +47,18 @@ def main():
 
     if is_directed:
         print("Graph is directed, so use many")
-        # use solution to many to solve
-        pass
+        colors = defaultdict(lambda: Color.WHITE)
+        order = []
+        cycle_free = topological_order(many_graph, colors, s, t, order)
+        if not cycle_free:
+            print("Graph contains cycle")
+            sys.exit()
+        values = longest_path(reverse_many_graph, order, reds)
+
+        if values[s] >= 1:
+            print("true")
+        else:
+            print("false")
     else:
         print("Graph is undirected, so use flow")
 
