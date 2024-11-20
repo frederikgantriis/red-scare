@@ -40,9 +40,6 @@ def main():
         pass
     else:
         print("Graph is undirected, so use flow")
-        for v in vertices:
-            print(v)
-            print(flow_graph[v])
 
         s_prime = s + "_p"
         t_prime = t + "_p"
@@ -59,7 +56,7 @@ def main():
             flow_graph[red + "_i"][red + "_o"] = 1
             flow_graph[red + "_o"][t_prime] = 0
 
-            if fv >= 1:
+            if fv >= 2:
                 works = True
                 break
 
