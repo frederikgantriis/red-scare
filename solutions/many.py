@@ -64,7 +64,7 @@ def main():
             break
 
     if is_undirected:
-        print("Graph is undirected")
+        print("-")
         sys.exit()
 
     colors = defaultdict(lambda: Color.WHITE)
@@ -72,7 +72,7 @@ def main():
     cycle_free = topological_order(graph, colors, s, t, order)
 
     if not cycle_free:
-        print("Graph contains cycle")
+        print("-")
         sys.exit()
 
     values = longest_path(reverse_graph, order, reds)
