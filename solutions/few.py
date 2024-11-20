@@ -27,7 +27,6 @@ def main():
 
         if line == "--":
             graph[v].append(u)
-    print("Graph read")
 
     print(dijkstra(graph, weight, s, t))
 

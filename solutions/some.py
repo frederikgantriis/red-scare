@@ -46,12 +46,11 @@ def main():
             is_directed = False
 
     if is_directed:
-        print("Graph is directed, so use many")
         colors = defaultdict(lambda: Color.WHITE)
         order = []
         cycle_free = topological_order(many_graph, colors, s, t, order)
         if not cycle_free:
-            print("Graph contains cycle")
+            print("-")
             sys.exit()
         values = longest_path(reverse_many_graph, order, reds)
 
@@ -60,8 +59,6 @@ def main():
         else:
             print("false")
     else:
-        print("Graph is undirected, so use flow")
-
         s_prime = s + "_p"
         t_prime = t + "_p"
         flow_graph[s_prime][s + "_i"] = 1
