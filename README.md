@@ -10,9 +10,6 @@ The 3 groups are:
 
 We have a weekly meeting with a TA on Wednesdays at 11.
 
-Link to edit report:
-https://www.overleaf.com/9424161849symjfphjcdqj#2b4932
-
 ## How to run
 
 The `find_graphs.py` is used to find all graphs with 500 or more vertices.
